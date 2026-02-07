@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import { motion } from "framer-motion";
 import { Volume2, VolumeX } from "lucide-react";
+import music from "@/assets/music.mp3";
 
 const MusicToggle = () => {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -9,7 +10,7 @@ const MusicToggle = () => {
 
   // Create audio once
   useEffect(() => {
-    const audio = new Audio("/music.mp3");
+    const audio = new Audio(music);
     audio.loop = true;
     audio.volume = 0.3;
     audio.preload = "auto";
@@ -29,7 +30,6 @@ const MusicToggle = () => {
       audioRef.current.pause();
       setIsPlaying(false);
     } else {
-      audioRef.current.currentTime = 0; // 🔥 always start from beginning
       audioRef.current
         .play()
         .then(() => {
@@ -40,14 +40,15 @@ const MusicToggle = () => {
     }
   }, [isPlaying]);
 
+
   // Autoplay on first user interaction
   useEffect(() => {
     if (hasInteracted) return;
 
     const startMusic = () => {
-      if (!audioRef.current) return;
+      if (!audioRef.current || hasInteracted) return;
 
-      audioRef.current.currentTime = 0; // 🔥 start from beginning
+      audioRef.current.currentTime = 0;
       audioRef.current
         .play()
         .then(() => {
@@ -67,6 +68,7 @@ const MusicToggle = () => {
       window.removeEventListener("scroll", startMusic);
     };
   }, [hasInteracted]);
+
 
   return (
     <motion.button
