@@ -1,0 +1,136 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 30 30% 97%;
+    --foreground: 20 25% 12%;
+
+    --card: 30 25% 95%;
+    --card-foreground: 20 25% 12%;
+
+    --popover: 30 25% 95%;
+    --popover-foreground: 20 25% 12%;
+
+    --primary: 350 35% 60%;
+    --primary-foreground: 30 30% 97%;
+
+    --secondary: 25 20% 90%;
+    --secondary-foreground: 20 25% 20%;
+
+    --muted: 25 15% 88%;
+    --muted-foreground: 20 10% 45%;
+
+    --accent: 340 30% 75%;
+    --accent-foreground: 20 25% 12%;
+
+    --destructive: 0 60% 50%;
+    --destructive-foreground: 30 30% 97%;
+
+    --border: 25 15% 88%;
+    --input: 25 15% 85%;
+    --ring: 350 35% 60%;
+
+    --radius: 0.75rem;
+
+    /* Valentine custom tokens */
+    --valentine-rose: 350 35% 60%;
+    --valentine-blush: 340 30% 85%;
+    --valentine-cream: 30 30% 97%;
+    --valentine-warm: 25 40% 92%;
+    --valentine-gold: 38 60% 70%;
+    --valentine-deep: 350 40% 35%;
+    --valentine-text: 20 25% 12%;
+    --valentine-text-soft: 20 10% 45%;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Hide scrollbar for a cleaner experience */
+  ::-webkit-scrollbar {
+    display: none;
+  }
+
+  html {
+    scrollbar-width: none;
+    scroll-behavior: smooth;
+  }
+}
+
+@layer utilities {
+  .font-serif-display {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+  }
+
+  .text-valentine-rose {
+    color: hsl(var(--valentine-rose));
+  }
+
+  .bg-valentine-warm {
+    background-color: hsl(var(--valentine-warm));
+  }
+
+  .bg-valentine-cream {
+    background-color: hsl(var(--valentine-cream));
+  }
+
+  .bg-valentine-blush {
+    background-color: hsl(var(--valentine-blush));
+  }
+
+  .text-valentine-deep {
+    color: hsl(var(--valentine-deep));
+  }
+
+  .text-valentine-soft {
+    color: hsl(var(--valentine-text-soft));
+  }
+
+  .gradient-warm {
+    background: linear-gradient(
+      180deg,
+      hsl(var(--valentine-cream)) 0%,
+      hsl(var(--valentine-warm)) 50%,
+      hsl(var(--valentine-blush) / 0.3) 100%
+    );
+  }
+
+  .gradient-celebration {
+    background: linear-gradient(
+      180deg,
+      hsl(var(--valentine-warm)) 0%,
+      hsl(var(--valentine-blush) / 0.5) 50%,
+      hsl(var(--valentine-cream)) 100%
+    );
+  }
+
+  .shadow-memory {
+    box-shadow: 0 8px 32px -8px hsl(var(--valentine-rose) / 0.15),
+                0 4px 16px -4px hsl(var(--foreground) / 0.08);
+  }
+
+  .shadow-soft {
+    box-shadow: 0 4px 24px -4px hsl(var(--foreground) / 0.06);
+  }
+}
