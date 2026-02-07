@@ -49,23 +49,27 @@ const MusicToggle = () => {
       if (!audioRef.current || hasInteracted) return;
 
       audioRef.current.currentTime = 0;
+
       audioRef.current
         .play()
         .then(() => {
           setIsPlaying(true);
           setHasInteracted(true);
         })
-        .catch(() => { });
+        .catch(() => {
+          // autoplay blocked – silently ignore
+        });
     };
 
-    window.addEventListener("click", startMusic, { once: true });
+    // REAL gesture events
+    window.addEventListener("pointerdown", startMusic, { once: true });
     window.addEventListener("touchstart", startMusic, { once: true });
-    window.addEventListener("scroll", startMusic, { once: true });
+    window.addEventListener("keydown", startMusic, { once: true });
 
     return () => {
-      window.removeEventListener("click", startMusic);
+      window.removeEventListener("pointerdown", startMusic);
       window.removeEventListener("touchstart", startMusic);
-      window.removeEventListener("scroll", startMusic);
+      window.removeEventListener("keydown", startMusic);
     };
   }, [hasInteracted]);
 
